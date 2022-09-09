@@ -31,19 +31,18 @@ This example API documentation page was created with [Slate](https://github.com/
 
 # Basic Setup
 
-Install magiclogin sdk as npm package
-
 ```
 npm install @samexps/magiclogin@1.0.3
 ```
+
+Install magiclogin sdk as npm package
 
 For full list of released packages, please check [Released pacakges](https://github.com/samexps/magiclogin/pkgs/npm/magiclogin)
 
 # Request and Response
 
-API responses have same structure
-
 > Success Response
+
 When `status: "ok"` then data will be inside `result` attribute
 
 ```json
@@ -55,6 +54,7 @@ When `status: "ok"` then data will be inside `result` attribute
 ```
 
 > Error Response
+
 When `status: "error"` then error data will be in "error" attribute
 
 ```json
@@ -65,14 +65,10 @@ When `status: "error"` then error data will be in "error" attribute
 }
 ```
 
+<aside class="notice">API responses have same structure</aside>
+
 ## Initialize Login app with API key and redirect url
 
-Pass configuration object to initialize Login app.
-
-Parameters | Type | Description
----|---|---
-apiKey|String| API Key that is created by Web3Magic Login team
-redirectUrl|String| Configured by organizatio themselves
 
 > Sample code snippet
 
@@ -106,12 +102,14 @@ const Web3Login = new LoginApp(config);
 export default Web3Login;
 ```
 
-## Login by email
-Use `app.sendEmail()` to send email login request
+Pass configuration object to initialize Login app.
 
-Parameter | Default | Description
---------- | ------- | -----------
-email | string | Email request
+Parameters | Type | Description
+---|---|---
+apiKey|String| API Key that is created by Web3Magic Login team
+redirectUrl|String| Configured by organizatio themselves
+
+## Login by email
 
 ```javascript
 import LoginApp from './loginapp'
@@ -141,20 +139,17 @@ const response = await LoginApp.sendEmail({
     "error": "Invalid Compact JWS"
 }
 ```
+Use `app.sendEmail()` to send email login request
 
-Upon success, it returns a token that has to be used to check if email has been
-verified by email or not.
+Parameter | Default | Description
+--------- | ------- | -----------
+email | string | Email request
+
+
+Upon <code>success</code>, it returns a <code>token</code> that can be used to check if email has been
+verified by email or not. In sample response <code>HhjUkYWpzXiMbhoFIfsYuKlpbduPweVa</code> is our token.
 
 ## Verify email
-
-Organization has to keep polling to check if user has verified email or not. Organization
-can use `LoginApp.checkTokenConfirmation()` to poll for email verification.
-
-<aside class="success">
-Upon <code>success</code> it returns <code>id_wallet_address</code> appended to <code>redirect_url</code> configured
-by organization while setting up SDK. In below response, <code>0xt5d221a4d4568dad6f83d5fe7aa7b1fe22daf408</code>
-is wallet address and <code>https://app.company.com/userId/ABC1234</code> is <code>redirect_url</code> conifgured.
-</aside>
 
 > Success response
 
@@ -175,6 +170,22 @@ is wallet address and <code>https://app.company.com/userId/ABC1234</code> is <co
     "error": "not confirmed yet"
 }
 ```
+
+Organization has to keep polling to check if user has verified email or not. Organization
+can use `LoginApp.checkTokenConfirmation()` to poll for email verification.
+
+**Email Link Expire**
+<aside class="warning">
+The link in the email is valid for 10 minutes only.
+</aside>
+
+**Wallet Address ID**
+<aside class="success">
+Upon <code>success</code> it returns <code>id_wallet_address</code> appended to <code>redirect_url</code> configured
+by organization while setting up SDK. In below response, <code>0xt5d221a4d4568dad6f83d5fe7aa7b1fe22daf408</code>
+is wallet address and <code>https://app.company.com/userId/ABC1234</code> is <code>redirect_url</code> conifgured.
+</aside>
+
 
 ## QR Code
 
