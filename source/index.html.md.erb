@@ -29,7 +29,7 @@ The Web3Magic Login SDK for JavaScript provides a rich set of client-side functi
 
 This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Basic Setup
+# Install package
 
 ```
 npm install @samexps/magiclogin@1.0.3
@@ -39,36 +39,40 @@ Install magiclogin sdk as npm package
 
 For full list of released packages, please check [Released pacakges](https://github.com/samexps/magiclogin/pkgs/npm/magiclogin)
 
-# Request and Response
+# Initialization
 
-> Success Response
+The <code>new LoginApp()</code> is used to initiate and setup the SDK. You may want
+to customize the configuration parameters used.
 
-When `status: "ok"` then data will be inside `result` attribute
+All other SDK methods must be called after this one, because they won't exist until you do.
 
-```json
-{
-  "status": "ok",
-  "result": { "data": "some data" },
-  "error": null,
-}
+`LoginApp(config)`
+
+Topics|Type|Description
+---|---|---
+config|ApplicationConfig|Configuration Object
+
+# Import app
+
+```javascript
+import LoginApp from '@samexps/magiclogin';
 ```
 
-> Error Response
+Import `@samexps/magiclogin` in the page. Ideally, it has to be initialized globally only once.
 
-When `status: "error"` then error data will be in "error" attribute
+```javascript
+const app = new LoginApp({
+  // Organization Key
+  apiKey,
 
-```json
-{
-  "status": "error",
-  "result": null,
-  "error": "some error has occurred",
-}
+  // Redirect URL
+  redirectUrl,
+})
 ```
 
-<aside class="notice">API responses have same structure</aside>
+After importing create object of `LoginApp` and pass config parameters.
 
 ## Initialize Login app with API key and redirect url
-
 
 > Sample code snippet
 
@@ -226,3 +230,38 @@ const { qrCodeBase64 } = await LoginApp.requestForQRCode()
 <code>Sample QR Code rendered looks like this</code>
 
 <%= image_tag "images/sample-qr.jpg" %>
+
+# API Request and API Response Json structure
+
+> Success Response
+
+When `status: "ok"` then data will be inside `result` attribute
+
+```json
+{
+  "status": "ok",
+  "result": { "data": "some data" },
+  "error": null,
+}
+```
+
+> Error Response
+
+When `status: "error"` then error data will be in "error" attribute
+
+```json
+{
+  "status": "error",
+  "result": null,
+  "error": "some error has occurred",
+}
+```
+
+<aside class="notice">API responses have same structure</aside>
+
+# How to get organization key?
+Please ask Web3Login SDK team to get organization key.
+
+# How to set redirect URL?
+You can set it to any valid `https` url. After success login, we will append
+wallet address id to this redirect url and redirect user to it.
