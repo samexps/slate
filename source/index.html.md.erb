@@ -189,8 +189,6 @@ is wallet address and <code>https://app.company.com/userId/ABC1234</code> is <co
 
 ## QR Code
 
-Generate QR Code that can be rendered in the page
-
 - Use `LoginApp.requestForQRCode()` to request for QR Code. Internally it uses
 organization token to make API request.
 
@@ -224,3 +222,7 @@ const { qrCodeBase64 } = await LoginApp.requestForQRCode()
     "error": "signature verification failed"
 }
 ```
+
+<code>Sample QR Code rendered looks like this</code>
+
+<%= image_tag "images/sample-qr.jpg" %>
