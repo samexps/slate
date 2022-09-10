@@ -1,12 +1,13 @@
 ---
-title: API Reference
+title: Web3Connect Login API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+# toc_footers:
+#   - version: 1.0.3
+#   - <a href='#'>Sign Up for a Developer Key</a>
+#   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -22,12 +23,10 @@ meta:
 
 # Quickstart
 
-The Web3Magic Login SDK for JavaScript provides a rich set of client-side functionality that:
+The Web3Connect SDK for JavaScript provides a rich set of client-side functionality that:
 - Enables you to use the Login Button
-- Enables you to use Login Login to lower the barrier for people to get wallet address id from web3wallet server
+- Enables you to use Login to lower the barrier for people to get wallet address id from Web3Wallet server
 - Makes it easy to call into Web3Wallet's API.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Install package
 
@@ -72,7 +71,7 @@ const app = new LoginApp({
 
 After importing create object of `LoginApp` and pass config parameters.
 
-## Initialize Login app with API key and redirect url
+## Initialize Login config
 
 > Sample code snippet
 
@@ -231,7 +230,7 @@ const { qrCodeBase64 } = await LoginApp.requestForQRCode()
 
 <%= image_tag "images/sample-qr.jpg" %>
 
-# API Request and API Response Json structure
+# API Request and Response
 
 > Success Response
 
@@ -260,7 +259,9 @@ When `status: "error"` then error data will be in "error" attribute
 <aside class="notice">API responses have same structure</aside>
 
 # How to get organization key?
-Please ask Web3Login SDK team to get organization key.
+Organization key is a unique key assigned to every organization by Web3Connect team.
+
+- Please ask Web3Connect SDK team to get organization key.
 
 # How to set redirect URL?
 You can set it to any valid `https` url. After success login, we will append
