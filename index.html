@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta
             name="description"
-            content="Documentation for the Web3Connect SDK"
+            content="Documentation for the Magc3Login API"
         >
-    <title>Web3Connect Login API Reference</title>
+    <title>API Reference</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -290,9 +290,6 @@
     <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
       <script src="javascripts/all_nosearch-18c3ed8e.js"></script>
 
-    <script>
-      $(function() { setupCodeCopy(); });
-    </script>
   </head>
 
   <body class="index" data-languages="[&quot;javascript&quot;]">
@@ -303,7 +300,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-6506fc71.jpg" class="logo" alt="" />
+      <img src="images/logo-1e815a84.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="javascript">javascript</a>
         </div>
@@ -312,16 +309,13 @@
             <a href="#quickstart" class="toc-h1 toc-link" data-title="Quickstart">Quickstart</a>
           </li>
           <li>
-            <a href="#install-package" class="toc-h1 toc-link" data-title="Install package">Install package</a>
+            <a href="#basic-setup" class="toc-h1 toc-link" data-title="Basic Setup">Basic Setup</a>
           </li>
           <li>
-            <a href="#initialization" class="toc-h1 toc-link" data-title="Initialization">Initialization</a>
-          </li>
-          <li>
-            <a href="#import-app" class="toc-h1 toc-link" data-title="Import app">Import app</a>
+            <a href="#request-and-response" class="toc-h1 toc-link" data-title="Request and Response">Request and Response</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#initialize-config" class="toc-h2 toc-link" data-title="Initialize config">Initialize config</a>
+                    <a href="#initialize-login-app-with-api-key-and-redirect-url" class="toc-h2 toc-link" data-title="Initialize Login app with API key and redirect url">Initialize Login app with API key and redirect url</a>
                   </li>
                   <li>
                     <a href="#login-by-email" class="toc-h2 toc-link" data-title="Login by email">Login by email</a>
@@ -335,96 +329,52 @@
               </ul>
           </li>
           <li>
-            <a href="#api-request-and-response" class="toc-h1 toc-link" data-title="API Request and Response">API Request and Response</a>
-          </li>
-          <li>
-            <a href="#how-to-get-organization-key" class="toc-h1 toc-link" data-title="How to get organization key?">How to get organization key?</a>
-          </li>
-          <li>
-            <a href="#how-to-set-redirect-url" class="toc-h1 toc-link" data-title="How to set redirect URL?">How to set redirect URL?</a>
-          </li>
-          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
+        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='quickstart'>Quickstart</h1>
-<p>The Web3Connect SDK for JavaScript provides a rich set of client-side functionality that:
+<p>The Web3Magic Login SDK for JavaScript provides a rich set of client-side functionality that:
 - Enables you to use the Login Button
-- Enables you to use Login to lower the barrier for people to get wallet address id from Web3Wallet server
+- Enables you to use Login Login to lower the barrier for people to get wallet address id from web3wallet server
 - Makes it easy to call into Web3Wallet&#39;s API.</p>
-<h1 id='install-package'>Install package</h1><div class="highlight"><pre class="highlight plaintext"><code>npm install @samexps/magiclogin@1.0.3
-</code></pre></div>
+
+<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<h1 id='basic-setup'>Basic Setup</h1>
 <p>Install magiclogin sdk as npm package</p>
-
+<div class="highlight"><pre class="highlight plaintext"><code>npm install @samexps/magiclogin@1.0.3
+</code></pre></div>
 <p>For full list of released packages, please check <a href="https://github.com/samexps/magiclogin/pkgs/npm/magiclogin">Released pacakges</a></p>
-<h1 id='initialization'>Initialization</h1>
-<p>The <code>new LoginApp()</code> is used to initiate and setup the SDK. You may want
-to customize the configuration parameters used.</p>
+<h1 id='request-and-response'>Request and Response</h1>
+<p>API responses have same structure</p>
 
-<p>All other SDK methods must be called after this one, because they won&#39;t exist until you do.</p>
-
-<p><code>LoginApp(config)</code></p>
-
-<table><thead>
-<tr>
-<th>Topics</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>config</td>
-<td>ApplicationConfig</td>
-<td>Configuration Object</td>
-</tr>
-</tbody></table>
-<h1 id='import-app'>Import app</h1><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Login</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@bit3xtechnologies/web3connect</span><span class="dl">'</span><span class="p">;</span>
-</code></pre></div>
-<p>Import <code>@bit3xtechnologies/web3connect</code> in the page. Ideally, it has to be initialized globally only once.</p>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LoginApp</span><span class="p">({</span>
-  <span class="c1">// Organization Key</span>
-  <span class="nx">apiKey</span><span class="p">,</span>
-
-  <span class="c1">// Redirect URL</span>
-  <span class="nx">redirectUrl</span><span class="p">,</span>
-<span class="p">})</span>
-</code></pre></div>
-<p>After importing create object of <code>LoginApp</code> and pass config parameters.</p>
-<h2 id='initialize-config'>Initialize config</h2>
 <blockquote>
-<p>Sample code snippet</p>
+<p>Success Response
+When <code>status: &quot;ok&quot;</code> then data will be inside <code>result</code> attribute</p>
 </blockquote>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>      <span class="c1">// get it from Web3Magic Login team</span>
-<span class="kd">const</span> <span class="nx">redirectUrl</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span> <span class="c1">// It has to be configured by organization themselves</span>
-
-<span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span> <span class="na">apiKey</span><span class="p">:</span> <span class="nx">apiKey</span><span class="p">,</span> <span class="na">redirectUrl</span><span class="p">:</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">redirectUrl</span><span class="p">)</span> <span class="p">}</span>
-
-<span class="kd">const</span> <span class="nx">Web3Login</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LoginApp</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
-</code></pre></div>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some data"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <blockquote>
-<p>Filename: loginapp.js</p>
+<p>Error Response
+When <code>status: &quot;error&quot;</code> then error data will be in &quot;error&quot; attribute</p>
 </blockquote>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">LoginApp</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@bit3xtechnologies/web3connect</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="c1">// It has to be obtained from Web3magic Login team</span>
-<span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">replace_with_api_key</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="c1">// Redirect URL from config</span>
-<span class="kd">const</span> <span class="nx">redirectUrl</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">https://app.company.com/userId/ABC1234</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">apiKey</span><span class="p">:</span> <span class="nx">apiKey</span><span class="p">,</span>
-  <span class="na">redirectUrl</span><span class="p">:</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">redirectUrl</span><span class="p">),</span>
-<span class="p">}</span>
-
-<span class="kd">const</span> <span class="nx">Web3Login</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LoginApp</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="nx">Web3Login</span><span class="p">;</span>
-</code></pre></div>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some error has occurred"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='initialize-login-app-with-api-key-and-redirect-url'>Initialize Login app with API key and redirect url</h2>
 <p>Pass configuration object to initialize Login app.</p>
 
 <table><thead>
@@ -445,7 +395,53 @@ to customize the configuration parameters used.</p>
 <td>Configured by organizatio themselves</td>
 </tr>
 </tbody></table>
-<h2 id='login-by-email'>Login by email</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">LoginApp</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./loginapp</span><span class="dl">'</span>
+
+<blockquote>
+<p>Sample code snippet</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>      <span class="c1">// get it from Web3Magic Login team</span>
+<span class="kd">const</span> <span class="nx">redirectUrl</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span> <span class="c1">// It has to be configured by organization themselves</span>
+
+<span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span> <span class="na">apiKey</span><span class="p">:</span> <span class="nx">apiKey</span><span class="p">,</span> <span class="na">redirectUrl</span><span class="p">:</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">redirectUrl</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">Web3Login</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LoginApp</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>Filename: loginapp.js</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">LoginApp</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@samexps/magiclogin</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="c1">// It has to be obtained from Web3magic Login team</span>
+<span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">replace_with_api_key</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="c1">// Redirect URL from config</span>
+<span class="kd">const</span> <span class="nx">redirectUrl</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">https://app.company.com/userId/ABC1234</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">apiKey</span><span class="p">:</span> <span class="nx">apiKey</span><span class="p">,</span>
+  <span class="na">redirectUrl</span><span class="p">:</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">redirectUrl</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">Web3Login</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LoginApp</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Web3Login</span><span class="p">;</span>
+</code></pre></div><h2 id='login-by-email'>Login by email</h2>
+<p>Use <code>app.sendEmail()</code> to send email login request</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Email request</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">LoginApp</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./loginapp</span><span class="dl">'</span>
 
 <span class="c1">// send email login request</span>
 <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">LoginApp</span><span class="p">.</span><span class="nx">sendEmail</span><span class="p">({</span>
@@ -470,25 +466,18 @@ to customize the configuration parameters used.</p>
     </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid Compact JWS"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Use <code>app.sendEmail()</code> to send email login request</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>email</td>
-<td>string</td>
-<td>Email request</td>
-</tr>
-</tbody></table>
-
-<p>Upon <code>success</code>, it returns a <code>token</code> that can be used to check if email has been
-verified by email or not. In sample response <code>HhjUkYWpzXiMbhoFIfsYuKlpbduPweVa</code> is our token.</p>
+<p>Upon success, it returns a token that has to be used to check if email has been
+verified by email or not.</p>
 <h2 id='verify-email'>Verify email</h2>
+<p>Organization has to keep polling to check if user has verified email or not. Organization
+can use <code>LoginApp.checkTokenConfirmation()</code> to poll for email verification.</p>
+
+<aside class="success">
+Upon <code>success</code> it returns <code>id_wallet_address</code> appended to <code>redirect_url</code> configured
+by organization while setting up SDK. In below response, <code>0xt5d221a4d4568dad6f83d5fe7aa7b1fe22daf408</code>
+is wallet address and <code>https://app.company.com/userId/ABC1234</code> is <code>redirect_url</code> conifgured.
+</aside>
+
 <blockquote>
 <p>Success response</p>
 </blockquote>
@@ -506,22 +495,9 @@ verified by email or not. In sample response <code>HhjUkYWpzXiMbhoFIfsYuKlpbduPw
     </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"not confirmed yet"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Organization has to keep polling to check if user has verified email or not. Organization
-can use <code>LoginApp.checkTokenConfirmation()</code> to poll for email verification.</p>
+</span></code></pre></div><h2 id='qr-code'>QR Code</h2>
+<p>Generate QR Code that can be rendered in the page</p>
 
-<p><strong>Email Link Expire</strong>
-<aside class="warning">
-The link in the email is valid for 10 minutes only.
-</aside></p>
-
-<p><strong>Wallet Address ID</strong>
-<aside class="success">
-Upon <code>success</code> it returns <code>id_wallet_address</code> appended to <code>redirect_url</code> configured
-by organization while setting up SDK. In below response, <code>0xt5d221a4d4568dad6f83d5fe7aa7b1fe22daf408</code>
-is wallet address and <code>https://app.company.com/userId/ABC1234</code> is <code>redirect_url</code> conifgured.
-</aside></p>
-<h2 id='qr-code'>QR Code</h2>
 <ul>
 <li>Use <code>LoginApp.requestForQRCode()</code> to request for QR Code. Internally it uses
 organization token to make API request.</li>
@@ -552,44 +528,7 @@ organization token to make API request.</li>
     </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signature verification failed"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p><code>Sample QR Code rendered looks like this</code></p>
-
-<p><img src="images/sample-qr-aa7dd266.jpg" alt="" /></p>
-<h1 id='api-request-and-response'>API Request and Response</h1>
-<blockquote>
-<p>Success Response</p>
-</blockquote>
-
-<p>When <code>status: &quot;ok&quot;</code> then data will be inside <code>result</code> attribute</p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some data"</span><span class="w"> </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<blockquote>
-<p>Error Response</p>
-</blockquote>
-
-<p>When <code>status: &quot;error&quot;</code> then error data will be in &quot;error&quot; attribute</p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some error has occurred"</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<aside class="notice">API responses have same structure</aside>
-<h1 id='how-to-get-organization-key'>How to get organization key?</h1>
-<p>Organization key is a unique key assigned to every organization by Web3Connect team.</p>
-
-<ul>
-<li>Please ask Web3Connect SDK team to get organization key.</li>
-</ul>
-<h1 id='how-to-set-redirect-url'>How to set redirect URL?</h1>
-<p>You can set it to any valid <code>https</code> url. After success login, we will append
-wallet address id to this redirect url and redirect user to it.</p>
-<h1 id='errors'>Errors</h1>
+</span></code></pre></div><h1 id='errors'>Errors</h1>
 <aside class="notice">
 If you find error code that is not listed below then please inform our team as soon as possible.
 </aside>
