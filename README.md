@@ -22,3 +22,8 @@ We can use docker and then use below command to push the changes to our reposito
 ```shell
 $ ./deploy --push-only
 ```
+
+> After deployment, it can take upto 10 minutes to reflect the changes.
+
+visit <a href="https://bit3xtechnologies.github.io/web3connect-docs/#quickstart">Web3Connect documentation</a>
+to see updates
